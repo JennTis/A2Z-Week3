@@ -1,62 +1,206 @@
-// A2Z F17
-// Daniel Shiffman
-// http://shiffman.net/a2z
+let url1 = "https://api.wordnik.com/v4/word.json/";
+let word = "moon";
+let word2 = "room";
+let word3 = "telephone";
+let word4 = "ballon";
+let word5 = "cow";
+let word6 = "bears";
+let word7 = "kittens";
+let word8 = "mittens";
+let word9 = "house";
+let word10 = "mouse";
+let word11 = "mush";
+let word12 = "lady";
+let url2 = "/relatedWords?useCanonical=false&limitPerRelationshipType=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
 
-// Thank you to: https://github.com/dariusk/metaphor-a-minute/blob/master/metaphor.js
-
-// Sign up for Wordnik here: https://www.wordnik.com/
-// Developer documentation: http://developer.wordnik.com/
-
-// Call to get a random noun
-let randomNounURL = "https://api.wordnik.com/v4/words.json/randomWord?" +
-                    "&excludePartOfSpeech=proper-noun,proper-noun-plural,proper-noun-posessive,suffix,family-name,idiom,affix&" +
-                    "&includePartOfSpeech=noun" +
-                    "&minLength=5&maxLength=-1" +
-                    "&api_key=48dd829661f515d5abc0d03197a00582e888cc7da2484d5c7";
-
-
-// A random Adjective
-let randomAdjURL  = "https://api.wordnik.com/v4/words.json/randomWord?" +
-                    "&includePartOfSpeech=adjective" +
-                    "&minLength=5&maxLength=-1" +
-                    "&api_key=48dd829661f515d5abc0d03197a00582e888cc7da2484d5c7";
-
-
-// A random word
-let randomWordURL = "https://api.wordnik.com/v4/words.json/randomWord?" +
-                    "&minLength=5&maxLength=-1" +
-                    "&api_key=48dd829661f515d5abc0d03197a00582e888cc7da2484d5c7";
+let link;
 
 function setup() {
   noCanvas();
-  // Some buttons
-  let button1 = select('#word');
-  button1.mousePressed(randomWord);
+  moon = select('#word');
+  moon.mousePressed(askWordnikMoon);
+  room = select('#word2');
+  room.mousePressed(askWordnikRoom);
+  telephone = select('#word3');
+  telephone.mousePressed(askWordnikTelephone);
+  balloon = select('#word4');
+  balloon.mousePressed(askWordnikBalloon);
+  cow = select('#word5');
+  cow.mousePressed(askWordnikCow);
+  bears = select('#word6');
+  bears.mousePressed(askWordnikBears);
+  kittens = select('#word7');
+  kittens.mousePressed(askWordnikKittens);
+  mittens = select('#word8');
+  mittens.mousePressed(askWordnikMittens);
+  house = select('#word9');
+  house.mousePressed(askWordnikHouse);
+  mouse = select('#word10');
+  mouse.mousePressed(askWordnikMouse);
+  mush = select('#word11');
+  mush.mousePressed(askWordnikMush);
+  lady = select('#word12');
+  lady.mousePressed(askWordnikLady);
 
-  let button2 = select('#adj');
-  button2.mousePressed(randomAdj);
-
-  let button3 = select('#noun');
-  button3.mousePressed(randomNoun);
 }
 
-// Load the JSON for each one
-function randomWord() {
-  wordnik('words', randomWordURL);
+function askWordnikMoon() {
+  loadJSON(url1 + word + url2, gotData);
+}
+function askWordnikRoom() {
+  loadJSON(url1 + word2 + url2, gotRoom);
+}
+function askWordnikTelephone() {
+  loadJSON(url1 + word3 + url2, gotTelephone);
+}
+function askWordnikBalloon() {
+  loadJSON(url1 + word4 + url2, gotBalloon);
+}
+function askWordnikCow() {
+  loadJSON(url1 + word5 + url2, gotCow);
+}
+function askWordnikBears() {
+  loadJSON(url1 + word6 + url2, gotBears);
+}
+function askWordnikKittens() {
+  loadJSON(url1 + word7 + url2, gotKittens);
+}
+function askWordnikMittens() {
+  loadJSON(url1 + word8 + url2, gotMittens);
+}
+function askWordnikHouse() {
+  loadJSON(url1 + word9 + url2, gotHouse);
+}
+function askWordnikMouse() {
+  loadJSON(url1 + word10 + url2, gotMouse);
+}
+function askWordnikMush() {
+  loadJSON(url1 + word11 + url2, gotMush);
+}
+function askWordnikLady() {
+  loadJSON(url1 + word12 + url2, gotLady);
 }
 
-function randomAdj() {
-  wordnik('adjs', randomAdjURL);
+function gotData(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    moon.html(word);
+  }
 }
 
-function randomNoun() {
-  wordnik('nouns', randomNounURL);
+function gotRoom(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    room.html(word);
+  }
 }
 
-function wordnik(where, url) {
-  loadJSON(url, wordLoaded);
-  function wordLoaded(data) {
-    let div = createDiv(data.word);
-    div.parent(where);
+function gotTelephone(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    telephone.html(word);
+  }
+}
+
+function gotBalloon(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    balloon.html(word);
+  }
+}
+function gotCow(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    cow.html(word);
+  }
+}
+function gotBears(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    bears.html(word);
+  }
+}
+function gotKittens(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    kittens.html(word);
+  }
+}
+function gotMittens(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    mittens.html(word);
+  }
+}
+function gotHouse(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    house.html(word);
+  }
+}
+function gotMouse(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    mouse.html(word);
+  }
+}
+function gotMush(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    mush.html(word);
+  }
+}
+function gotLady(data) {
+  if (data.length === 0) {
+    createP('no related words');
+  } else {
+    let index1 = floor(random(0, data.length));
+    let index2 = floor(random(0, data[index1].words.length));
+    word = data[index1].words[index2];
+    lady.html(word);
   }
 }
