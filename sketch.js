@@ -1,19 +1,19 @@
-let emojis;
+let capitals;
 
 function setup() {
   noCanvas();
-  loadJSON('us_president_quotes.json', gotEmoji);
+  loadJSON('capitals.json', gotCapital);
 
   let button = select('#button');
   // Demonstrating anonymous function
   button.mousePressed(function() {
-    let span = createSpan(random(emojis))
+    let span = createSpan(random(capitals))
     // Demonstrating chaining
-    span.style('font-size','64px').parent('emojis');
+    span.style('font-size','64px').parent('capitals');
   });
 }
 
-function gotEmoji(data) {
+function gotCapital(data) {
   console.log(data);
-  emojis = data.seaEmoji;
+  capitals = data.capitals;
 }
