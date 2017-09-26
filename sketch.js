@@ -9,7 +9,7 @@ function setup() {
   button.mousePressed(function() {
     let span = createSpan(random(capitals))
     // Demonstrating chaining
-    span.style('font-size','64px').parent('capitals');
+//     span.style('font-size','64px').parent('capitals');
   });
 }
 
